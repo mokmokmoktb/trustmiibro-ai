@@ -1,0 +1,7 @@
+[build]
+  publish = "Web"
+
+[[redirects]]
+  from = "/"
+  to = "/home.html"
+  status = 200
