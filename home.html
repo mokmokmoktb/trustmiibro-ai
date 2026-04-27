@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Password Checker</title>
+<link rel="stylesheet" href="CSS/home.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.4.2/zxcvbn.js"></script>
+<script src="JS/home.js" defer></script>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <p id="group-name"><a href="home.html">Trust Mii Broo</a></p>
+    <p id="name"><a href="home.html">password checker</a></p>
+  </div>
+</header>
+
+<section class="title">
+  <h1>Trust Mii Broo</h1>
+
+  <p>
+    Check and Improve Your Password
+  </p>
+  <p id="learn-more">or <a href="#info">Learn More</a> about Password Requirements</p>
+
+  <div class="container">
+    <div class="input-group">
+        <input type="password" id="pwdInput" placeholder="Test your password">
+        <button class="icon-btn" id="clearBtn">✕</button>
+        <button class="icon-btn" id="toggleVisBtn">🙈</button>
+    </div>
+
+    <div class="strength-section" id="strengthSection">
+        <div class="strength-bar-bg">
+            <div class="strength-bar" id="strengthBar"></div>
+        </div>
+        <div class="requirements">
+            <div class="req-item" id="req-upper">
+                <div class="checkbox">✓</div> Uppercase [A-Z]
+            </div>
+            <div class="req-item" id="req-digit">
+                <div class="checkbox">✓</div> Digits [0-9]
+            </div>
+            <div class="req-item" id="req-symbol">
+                <div class="checkbox">✓</div> Symbols [!@#]
+            </div>
+            <div class="req-item valid" id="req-leak">
+                <div class="checkbox">✓</div> No leaks found
+            </div>
+        </div>
+        <p id="crackInfo">Time to crack your password:</p>
+        <div id="time">
+            
+        </div>
+    </div>
+</section>
+<section id="info">
+    <div id="info-header">
+        <img src="picture/lizard.png">
+        <div id="info-title">
+            <h2>Password</h2>
+            <h2>Requirements</h2>
+        </div>
+    </div>
+    <ul id="info-list">
+        <li>At least 8 characters.</li>
+        <li>No more than 128 characters.</li>
+        <li>Include uppercase and lowercase letters.</li>
+        <li>Latn letter only.</li>
+        <li>At least one numeral.</li>
+        <li>Arabic numerals only.</li>
+        <li>No spaces.</li>
+        <li>~ !?@#$%^&* are valid characters.</li>
+    </ul>
+</section>
+
+</body>
+</html>

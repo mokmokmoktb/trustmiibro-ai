@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Password Checker</title>
+<link rel="stylesheet" href="CSS/home.css">
+<link rel="icon" href="picture/homeicon.png">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.4.2/zxcvbn.js"></script>
+<script src="JS/home.js" defer></script>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <p id="group-name"><a href="home.html">Trust Mii Broo</a></p>
+    <p id="name"><a href="home.html">password checker</a></p>
+  </div>
+</header>
+
+<section class="title">
+  <h1>Trust Mii Broo</h1>
+
+  <p>
+    Check and Improve Your Password
+  </p>
+  <p id="learn-more">or <a href="#info">Learn More</a> about Password Requirements</p>
+
+  <div class="container">
+    <div class="input-group">
+        <input type="password" id="pwdInput" placeholder="Test your password">
+        <button class="icon-btn" id="clearBtn">✕</button>
+        <button class="icon-btn" id="toggleVisBtn">🙈</button>
+    </div>
+
+    <div class="strength-section" id="strengthSection">
+        <div class="strength-bar-bg">
+            <div class="strength-bar" id="strengthBar"></div>
+        </div>
+        <div class="requirements">
+            <div class="req-item" id="req-upper">
+                <div class="checkbox">✓</div> Uppercase [A-Z]
+            </div>
+            <div class="req-item" id="req-digit">
+                <div class="checkbox">✓</div> Digits [0-9]
+            </div>
+            <div class="req-item" id="req-symbol">
+                <div class="checkbox">✓</div> Symbols [!@#]
+            </div>
+            <div class="req-item valid" id="req-leak">
+                <div class="checkbox">✓</div> No leaks found
+            </div>
+        </div>
+        <p id="crackInfo">Time to crack your password:</p>
+        <div id="time">
+            
+        </div>
+    </div>
+</section>
+<div class="bottom-content-wrapper">
+
+    <section id="info">
+        <div id="info-header">
+            <img src="picture/lizard.png">
+            <div id="info-title">
+                <h2>Password</h2>
+                <h2>Requirements</h2>
+            </div>
+        </div>
+        <ul id="info-list">
+            <li>At least 8 characters.</li>
+            <li>No more than 128 characters.</li>
+            <li>Include uppercase and lowercase letters.</li>
+            <li>Latn letter only.</li>
+            <li>At least one numeral.</li>
+            <li>Arabic numerals only.</li>
+            <li>No spaces.</li>
+            <li>~ !?@#$%^&* are valid characters.</li>
+        </ul>
+    </section>
+
+    <section id="generator-section">
+        <div class="generator-wrapper">
+            
+            <div class="generator-image-box">
+                <div class="image-placeholder">
+                    <img class="image"src="picture/img.png" alt="Password Generator">
+                </div>
+            </div>
+
+            <div class="generator-card">
+                <div class="generator-nav">
+                    <button class="gen-tab active" id="tab-scratch">From Scratch</button>
+                    <button class="gen-tab" id="tab-input">From Input</button>
+                </div>
+
+                <div id="mode-input" class="gen-mode">
+                    <div class="gen-controls">
+                        <label>Base Word (Optional):</label>
+                        <input type="text" id="gen-base-word" class="gen-input-field" placeholder="e.g. dragon">
+                        <div class="gen-hint">Type a word to enhance, or leave blank for a random funny phrase!</div>
+                    </div>
+                    
+                    <div class="gen-controls" style="margin-top: 20px;">
+                        <label>Target Length: <span id="ai-length-val">16</span></label>
+                        <input type="range" id="ai-gen-length" class="slider" min="8" max="32" value="16">
+                    </div>
+                    
+                    <div class="gen-checkboxes">
+                        <label><input type="checkbox" id="ai-inc-upper" checked> Uppercase</label>
+                        <label><input type="checkbox" id="ai-inc-num" checked> Numbers</label>
+                        <label><input type="checkbox" id="ai-inc-sym" checked> Symbols</label>
+                        <label><input type="checkbox" id="ai-inc-ambig"> Avoid Tricky (I, l, O, 0)</label>
+                    </div>
+                </div>
+
+                <div id="mode-scratch" class="gen-mode active">
+                    <div class="gen-controls">
+                        <label>Length: <span id="length-val">16</span></label>
+                        <input type="range" id="gen-length" class="slider" min="8" max="32" value="16">
+                    </div>
+                    
+                    <div class="gen-checkboxes">
+                        <label><input type="checkbox" id="inc-upper" checked> Uppercase</label>
+                        <label><input type="checkbox" id="inc-num" checked> Numbers</label>
+                        <label><input type="checkbox" id="inc-sym" checked> Symbols</label>
+                        <label><input type="checkbox" id="inc-ambig"> Avoid Tricky (I, l, O, 0)</label>
+                    </div>
+                </div>
+
+                <div class="gen-action-area">
+                    <button class="btn-generate" id="btn-generate">Generate</button>
+                    <div class="gen-output-box">
+                        <input type="text" id="gen-result" readonly placeholder="Your new password...">
+                        <button class="icon-btn" id="copy-btn" title="Copy">📋</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+        
+
+</div>
+
+</body>
+</html>
