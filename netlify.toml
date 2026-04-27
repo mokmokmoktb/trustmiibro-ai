@@ -1,6 +1,0 @@
-[build]
-  # This harmless 'echo' command overrides the broken 'ng build' setting in the UI
-  command = "echo 'No build step needed for static site'"
-  
-  # This tells Netlify your HTML/CSS/JS files are inside the 'Web' folder
-  publish = "Web"
