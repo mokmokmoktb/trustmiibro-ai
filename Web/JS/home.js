@@ -100,96 +100,42 @@ input.addEventListener('input', () => {
 });
 
 // =====================================================================
-// 2. GENERATOR TAB UI LOGIC
+// 2. AI GENERATOR LOGIC
 // =====================================================================
-const tabScratch = document.getElementById('tab-scratch');
-const tabInput = document.getElementById('tab-input');
-const modeScratch = document.getElementById('mode-scratch');
-const modeInput = document.getElementById('mode-input');
 
-// Paste this near your other UI element declarations
 const aiLengthSlider = document.getElementById('ai-gen-length');
 const aiLengthVal = document.getElementById('ai-length-val');
+const btnGenerate = document.getElementById('btn-generate');
+const genResult = document.getElementById('gen-result');
+const copyBtn = document.getElementById('copy-btn');
 
 // Makes the AI slider number update when dragged
-aiLengthSlider.addEventListener('input', () => {
-    aiLengthVal.textContent = aiLengthSlider.value;
-});
+if (aiLengthSlider && aiLengthVal) {
+    aiLengthSlider.addEventListener('input', () => {
+        aiLengthVal.textContent = aiLengthSlider.value;
+    });
+}
 
-tabScratch.addEventListener('click', () => {
-    tabScratch.classList.add('active');
-    tabInput.classList.remove('active');
-    modeScratch.classList.add('active');
-    modeInput.classList.remove('active');
-});
-
-tabInput.addEventListener('click', () => {
-    tabInput.classList.add('active');
-    tabScratch.classList.remove('active');
-    modeInput.classList.add('active');
-    modeScratch.classList.remove('active');
-});
-
-const lengthSlider = document.getElementById('gen-length');
-const lengthValDisplay = document.getElementById('length-val');
-lengthSlider.addEventListener('input', () => lengthValDisplay.textContent = lengthSlider.value);
-
-const copyBtn = document.getElementById('copy-btn');
-const genResult = document.getElementById('gen-result');
-
-copyBtn.addEventListener('click', () => {
-    if (genResult.value && genResult.value !== "AI is thinking..." && !genResult.value.includes("Error")) {
-        genResult.select();
-        document.execCommand('copy');
-        const originalIcon = copyBtn.textContent;
-        copyBtn.textContent = '✅';
-        setTimeout(() => copyBtn.textContent = originalIcon, 1500);
-    }
-    
-});
-
-// =====================================================================
-// 3. GENERATOR ALGORITHM LOGIC
-// =====================================================================
-const btnGenerate = document.getElementById('btn-generate');
-const baseWordInput = document.getElementById('gen-base-word');
-const incUpper = document.getElementById('inc-upper');
-const incNum = document.getElementById('inc-num');
-const incSym = document.getElementById('inc-sym');
-const incAmbig = document.getElementById('inc-ambig');
-
-const lowerChars = "abcdefghijkmnopqrstuvwxyz";
-const upperChars = "ABCDEFGHJKLMNPQRSTUVWXYZ";
-const numChars = "23456789";
-const symChars = "!@#$%^&*()_+-=[]{};':\\|,.<>/?";
-const ambigChars = "il1Lo0O";
-
-btnGenerate.addEventListener('click', async () => {
-    const isScratchMode = modeScratch.classList.contains('active');
-    const length = parseInt(lengthSlider.value) || 16;
-
-    if (isScratchMode) {
-        // --- ALGORITHM 1: Generate From Scratch ---
-        let charset = lowerChars;
-        if (document.getElementById('inc-upper').checked) charset += upperChars;
-        if (document.getElementById('inc-num').checked) charset += numChars;
-        if (document.getElementById('inc-sym').checked) charset += symChars;
-        if (!document.getElementById('inc-ambig').checked) charset += ambigChars; // Adds tricky chars if NOT avoided
-
-        if (charset === "") charset = lowerChars;
-
-        let pw = "";
-        for (let i = 0; i < length; i++) {
-            pw += charset[Math.floor(Math.random() * charset.length)];
+// Copy button logic
+if (copyBtn && genResult) {
+    copyBtn.addEventListener('click', () => {
+        if (genResult.value && genResult.value !== "AI is thinking..." && !genResult.value.includes("Error")) {
+            genResult.select();
+            document.execCommand('copy');
+            const originalIcon = copyBtn.textContent;
+            copyBtn.textContent = '✅';
+            setTimeout(() => copyBtn.textContent = originalIcon, 1500);
         }
-        genResult.value = pw;
+    });
+}
 
- } else {
-        // --- ALGORITHM 2: AI Generate From Input ---
+// API Generate call
+if (btnGenerate) {
+    btnGenerate.addEventListener('click', async () => {
         let baseWord = document.getElementById('gen-base-word').value.trim();
         genResult.value = "AI is thinking...";
 
-        // Grab values from the new AI-specific inputs!
+        // Grab values from the AI-specific inputs!
         const aiLength = parseInt(document.getElementById('ai-gen-length').value) || 16;
         const aiUpper = document.getElementById('ai-inc-upper').checked;
         const aiNum = document.getElementById('ai-inc-num').checked;
@@ -202,7 +148,7 @@ btnGenerate.addEventListener('click', async () => {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     weak_password: baseWord,
-                    target_len: aiLength, // Using the new AI slider length!
+                    target_len: aiLength,
                     inc_upper: aiUpper,
                     inc_num: aiNum,
                     inc_sym: aiSym,
@@ -218,5 +164,5 @@ btnGenerate.addEventListener('click', async () => {
             console.error("API Error:", error);
             genResult.value = "Error connecting to backend API.";
         }
-    }
-});
+    });
+}

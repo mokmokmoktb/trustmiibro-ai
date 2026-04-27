@@ -56,7 +56,9 @@
             
         </div>
     </div>
+  </div>
 </section>
+
 <div class="bottom-content-wrapper">
 
     <section id="info">
@@ -82,23 +84,22 @@
     <section id="generator-section">
         <div class="generator-wrapper">
             
-            <div class="generator-image-box">
-                <div class="image-placeholder">
-                    <img class="image"src="picture/img.png" alt="Password Generator">
-                </div>
-            </div>
-
             <div class="generator-card">
-                <div class="generator-nav">
-                    <button class="gen-tab active" id="tab-scratch">From Scratch</button>
-                    <button class="gen-tab" id="tab-input">From Input</button>
+                
+                <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 25px;">
+                    <div class="generator-image-box" style="margin: 0;">
+                        <div class="image-placeholder" style="min-height: unset; padding: 5px;">
+                            <img class="image" src="picture/img.png" alt="Generator Icon" style="width: 100%;">
+                        </div>
+                    </div>
+                    <h2 style="font-size: 30px; margin: 0;" > Password Generator</h2>
                 </div>
 
-                <div id="mode-input" class="gen-mode">
+                <div id="mode-input" class="gen-mode active">
                     <div class="gen-controls">
                         <label>Base Word (Optional):</label>
                         <input type="text" id="gen-base-word" class="gen-input-field" placeholder="e.g. dragon">
-                        <div class="gen-hint">Type a word to enhance, or leave blank for a random funny phrase!</div>
+                        <div class="gen-hint">Type a word to enhance, or leave blank for a random phrase!</div>
                     </div>
                     
                     <div class="gen-controls" style="margin-top: 20px;">
@@ -114,20 +115,6 @@
                     </div>
                 </div>
 
-                <div id="mode-scratch" class="gen-mode active">
-                    <div class="gen-controls">
-                        <label>Length: <span id="length-val">16</span></label>
-                        <input type="range" id="gen-length" class="slider" min="8" max="32" value="16">
-                    </div>
-                    
-                    <div class="gen-checkboxes">
-                        <label><input type="checkbox" id="inc-upper" checked> Uppercase</label>
-                        <label><input type="checkbox" id="inc-num" checked> Numbers</label>
-                        <label><input type="checkbox" id="inc-sym" checked> Symbols</label>
-                        <label><input type="checkbox" id="inc-ambig"> Avoid Tricky (I, l, O, 0)</label>
-                    </div>
-                </div>
-
                 <div class="gen-action-area">
                     <button class="btn-generate" id="btn-generate">Generate</button>
                     <div class="gen-output-box">
@@ -136,10 +123,9 @@
                     </div>
                 </div>
             </div>
+            
         </div>
     </section>
-    
-        
 
 </div>
 
