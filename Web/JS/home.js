@@ -1,6 +1,3 @@
-// =====================================================================
-// 1. PASSWORD CHECKER LOGIC
-// =====================================================================
 const input = document.getElementById('pwdInput');
 const strengthSection = document.getElementById('strengthSection');
 const strengthBar = document.getElementById('strengthBar');
@@ -100,7 +97,7 @@ input.addEventListener('input', () => {
 });
 
 // =====================================================================
-// 2. AI GENERATOR LOGIC
+//  AI GENERATOR LOGIC
 // =====================================================================
 
 const aiLengthSlider = document.getElementById('ai-gen-length');
@@ -143,9 +140,8 @@ if (btnGenerate) {
         const aiAmbig = document.getElementById('ai-inc-ambig').checked;
 
         try {
-            //(local) const response = await fetch('http://127.0.0.1:8000/enhance')
-            //(onl) const response = await fetch('https://trustmiibro-backend.onrender.com/enhance')
-            const response = await fetch('http://127.0.0.1:8000/enhance', {
+            // url and port should match the backend server settings in start.py
+            const response = await fetch('http://127.00.:8000/enhance', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
